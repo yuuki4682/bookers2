@@ -3,7 +3,7 @@
   <%= render 'error_messages', book: @book %>
   
   <div class="row">
-    <%= render 'new', book: @book %>
+    <%= render 'new', book: @new_book %>
     
     <div class="col-7">
       <h1>Books</h1>
@@ -27,9 +27,12 @@
             </td>
             <td><%= @book.title %></td>
             <td><%= @book.body %></td>
-            <% if @book.user_id == current_id %>
+            <% if @book.user_id == current_user.id %>
               <td>
-                <%= link_to 'edit', edit_user_path(@book.id) %>
+                <%= link_to 'edit', edit_book_path(@book.id), class:"btn btn-success" %>
+              </td>
+              <td>
+                <%= link_to 'destroy', book_path(@book), method: :delete, class:"btn btn-danger"%>
               </td>
             <% end %>
           </tr>

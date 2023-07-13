@@ -1,0 +1,22 @@
+<div class="container">
+  <%= render 'error_messages', book: @book %>
+  
+  <div class="row">
+    <div class="col-7 mx-auto">
+      <h1>Editing Book</h1>
+      <%= form_with model: @book do |f| %>
+        <div class="form-group">
+          <label>Title</label><br/>
+          <%= f.text_field :title, autofocus: true, class:'form-controll' %>
+        </div>
+        <div class="form-group">
+          <label>Opinion</label><br/>
+          <%= f.text_area :body, class:'form-controll' %>
+        </div>
+        <div>
+        <%= f.submit "Update User", class:'btn btn-success' %>  
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

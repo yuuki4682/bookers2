@@ -1,9 +1,9 @@
 <div class="container mt-3">
   
-  <%= render 'error_messages', book: @book %>
+  <%= render 'error_messages', book: @new_book %>
   
   <div class="row">
-    <%= render 'new', book: @book %>
+    <%= render 'new', book: @new_book %>
     
     <div class="col-7">
       <h1>Books</h1>
@@ -26,7 +26,11 @@
                   <%= image_tag 'no_image', size: "100x100" %>
                 <% end %>
               </td>
-              <td><%= book.title %></td>
+              <td>
+                <%= link_to (book_path(book.id)) do %>
+                <%= book.title %>
+                <% end %>
+                </td> 
               <td><%= book.body %></td>
             </tr>
           <% end %>

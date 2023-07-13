@@ -63,7 +63,11 @@
                   <%= image_tag 'no_image', size: "100x100" %>
                 <% end %>
               </td>
-              <td><%= book.title %></td>
+              <td>
+                <%= link_to (book_path(book.id)) do %>
+                  <%= book.title %>
+                <% end %>
+              </td>
               <td><%= book.body %></td>
             </tr>
           <% end %>
