@@ -1,8 +1,33 @@
-<h1>Users</h1>
-<div>
-  <% @users.each do |user| %>
-    <div><%= image_tag user.get_profile_image(100, 100) %></div>
-    <p><%= user.name %></p>
-    <p><%= link_to 'show', user_path(user.id) %></p>
-  <% end %>  
+<div class="container mt-3">
+  
+   <%= render 'books/error_messages', book: @book %>
+  
+  <div class="row">
+    
+    <%= render 'books/new', book: @book %>
+    
+    <div class="col-7">
+      <h1>Users</h1>
+      <table class="table">
+        <thread>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Introduction</th>
+          </tr>
+        </thread>
+        
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= image_tag user.get_profile_image(100, 100) %></td>
+              <td><%= user.name %></td>
+              <td><%= link_to 'show', user_path(user.id) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+      
+  </div>
 </div>

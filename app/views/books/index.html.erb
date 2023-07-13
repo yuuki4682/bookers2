@@ -1,0 +1,39 @@
+<div class="container mt-3">
+  
+  <%= render 'error_messages', book: @book %>
+  
+  <div class="row">
+    <%= render 'new', book: @book %>
+    
+    <div class="col-7">
+      <h1>Books</h1>
+      <table class="table">
+        <thread>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>opinion</th>
+          </tr>
+        </thread>
+        
+        <tbody>
+          <% @books.each do |book| %>
+            <tr>
+              <td>
+                <% if book.image.attached? %>
+                  <%= image_tag book.image, size: "100x100" %>
+                <% else %>
+                  <%= image_tag 'no_image', size: "100x100" %>
+                <% end %>
+              </td>
+              <td><%= book.title %></td>
+              <td><%= book.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+      
+  </div>
+</div>
+

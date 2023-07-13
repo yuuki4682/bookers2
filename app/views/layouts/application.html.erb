@@ -6,25 +6,71 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/f9ffc047f5.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to 'logout', destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to 'signup', new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to 'login', new_user_session_path %>
-        </li>
-      <% end %>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/"><span>Bookers</span></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <%= link_to (root_path), class: 'nav-link text-light' do %>
+                  <i class="fas fa-home"></i> <span>Home</span>
+                <% end %>
+              </li>
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                <%= link_to (users_path), class: 'nav-link text-light' do %>
+                  <i class="fa-solid fa-users"></i> <span>Users</span>
+                <% end %>
+                </li>
+                <li class="nav-item">
+                <%= link_to (books_path), class: 'nav-link text-light' do %>
+                  <i class="fa-solid fa-book-open"></i> <spam>Books</spam>
+                <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to (destroy_user_session_path), method: :delete, class: 'nav-link text-light' do %>
+                  <i class="fa-solid fa-right-from-bracket"></i> <span>Log out</span>
+                <% end %>
+                </li>
+              <% else %>
+                <li>
+                  <%= link_to (about_path), class: 'nav-link text-light' do %>
+                    <i class="fa-solid fa-link"></i> <span>About</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to (new_user_registration_path), class: 'nav-link text-light' do %>
+                   <i class="fa-solid fa-user-plus"></i> <span>Sign up</span>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to (new_user_session_path), class: 'nav-link text-light' do  %>
+                    <i class="fa-solid fa-right-to-bracket"></i> <span>Log in</span>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
+    <footer class="mt-5">
+      <div class="container">
+        <p class="text-center">CopyRight Infratop.inc</p>
+      </div>
+    </footer>
   </body>
 </html>

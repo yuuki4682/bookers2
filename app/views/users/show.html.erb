@@ -1,5 +1,75 @@
-<h1>User info</h1>
+<div class="container mt-3">
+  
+   <%= render 'books/error_messages', book: @book %>
+  
+  <div class="row">
+    
+    <div class="col-3">
+      <h1>User info</h1>
+      <%= image_tag @user.get_profile_image(100, 100) %>
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th>introduction</th>
+          <td><%= @user.introduction %></td>
+        </tr>
+         </table>
+      
+      <div class="w-75">
+        <%= link_to (edit_user_path(@user.id)), class:"btn btn-outline-secondary btn-block" do %>
+          <i class="fa-solid fa-user-gear"></i>
+        <% end %>
+      </div>
+      
+      <h1>New Book</h1>
+      <div class="my-1">
+        <%= form_with model: @book, url: books_path, method: :post  do |f| %>
+        <div class="form-group">
+          <div class="form-group-prepend">
+            <label>Title</label>
+            <div><%= f.text_field :title, class:"form-controll"%></div>
+            <label>Opinion</label>
+            <div><%= f.text_area :body, class:"form-controll", rows:"3" %></div>
+            </div>
+            <p><%= f.submit "Create Book", class:"btn btn-success" %></p>
+          </div>
+          
+        <% end %> 
+      </div>
+    </div>
 
-<div><%= image_tag @user.get_profile_image(100, 100) %></div>
-<p>Name: <%= @user.name %></p>
-<p>introduction:<%= @user.introduction %></p>
+    
+    <div class="col-7">
+      <h1>Books</h1>
+      <table class="table">
+        <thread>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>opinion</th>
+          </tr>
+        </thread>
+        
+        <tbody>
+          <% @books.each do |book| %>
+            <tr>
+              <td>
+                <% if book.image.attached? %>
+                  <%= image_tag book.image, size: "100x100" %>
+                <% else %>
+                  <%= image_tag 'no_image', size: "100x100" %>
+                <% end %>
+              </td>
+              <td><%= book.title %></td>
+              <td><%= book.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+      
+  </div>
+</div>
