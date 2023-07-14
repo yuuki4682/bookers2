@@ -4,7 +4,7 @@
   
   <div class="row">
     
-    <div class="col-3">
+    <div class="col-md-3">
       <h1>User info</h1>
       <%= image_tag @user.get_profile_image(100, 100) %>
       <table class="table">
@@ -13,18 +13,18 @@
           <td><%= @user.name %></td>
         </tr>
         <tr>
-          <th>introduction</th>
+          <th>Introduction</th>
           <td><%= @user.introduction %></td>
         </tr>
          </table>
       
       <div class="w-75">
         <%= link_to (edit_user_path(@user.id)), class:"btn btn-outline-secondary btn-block" do %>
-          <i class="fa-solid fa-user-gear"></i>
-        <% end %>
+            <i class="fas fa-user-cog"></i>
+          <% end %>
       </div>
       
-      <h1>New Book</h1>
+      <h1>New book</h1>
       <div class="my-1">
         <%= form_with model: @book, url: books_path, method: :post  do |f| %>
         <div class="form-group">
@@ -42,7 +42,7 @@
     </div>
 
     
-    <div class="col-7">
+    <div class="col-md-8 offset-md-1">
       <h1>Books</h1>
       <table class="table">
         <thread>
@@ -57,11 +57,9 @@
           <% @books.each do |book| %>
             <tr>
               <td>
-                <% if book.image.attached? %>
-                  <%= image_tag book.image, size: "100x100" %>
-                <% else %>
-                  <%= image_tag 'no_image', size: "100x100" %>
-                <% end %>
+                <%= link_to (user_path(book.user_id)) do %>
+                  <%= image_tag book.user.get_profile_image(100, 100) %>
+              <% end %>
               </td>
               <td>
                 <%= link_to (book_path(book.id)) do %>
@@ -69,6 +67,14 @@
                 <% end %>
               </td>
               <td><%= book.body %></td>
+                <% if book.user_id == current_user.id %>
+              <td>
+                <%= link_to 'edit', edit_book_path(book.id), class:"btn btn-success" %>
+              </td>
+              <td>
+                <%= link_to 'destroy', book_path(book), method: :delete, class:"btn btn-danger"%>
+              </td>
+            <% end %>
             </tr>
           <% end %>
         </tbody>
