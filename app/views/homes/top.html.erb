@@ -12,6 +12,7 @@
   </div>
   <div class="row py-2">
     <div class="col-5 mx-auto">
+      <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class:"btn btn-secondary btn-block", method: :post %>
       <a class="btn btn-block btn-info " href="/users/sign_in">Log in</a>
       <a class="btn btn-block btn-success" href="/users/sign_up">Sign up</a>
     </div>

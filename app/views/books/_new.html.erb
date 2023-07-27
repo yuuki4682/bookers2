@@ -14,11 +14,13 @@
     </tr>
      </table>
   
-  <div class="w-75">
-    <%= link_to (edit_user_path(current_user.id)), class:"btn btn-outline-secondary btn-block" do %>
-      <i class="fas fa-user-cog"></i>
-    <% end %>
-  </div>
+  <% unless current_user.guest_user? %>
+    <div class="w-75">
+      <%= link_to (edit_user_path(current_user.id)), class:"btn btn-outline-secondary btn-block" do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %>
+    </div>
+  <% end %>
   
   <h1>New book</h1>
   <div class="my-1">
