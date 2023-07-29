@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   end
   root to: "homes#top"
   get "/home/about" => "homes#about", as: "about"
-  resources :users, only: [:show, :edit, :update, :index]
+  resources :users, only: [:show, :edit, :update, :index] do
+    member do
+      get :follows, :followers
+    end
+    resource :relationships, only: [:create, :destroy]
+  end
   resources :books, only: [:show, :index, :new, :create, :destroy, :update, :edit] do
     resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]
