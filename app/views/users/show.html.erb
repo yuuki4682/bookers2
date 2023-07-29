@@ -1,48 +1,16 @@
 <div class="container mt-3">
   
-   <%= render 'books/error_messages', book: @book %>
+   <%= render 'layouts/error_messages', obj: @book %>
   
   <div class="row">
     
     <div class="col-md-3">
       <h1>User info</h1>
-      <%= image_tag @user.get_profile_image(100, 100) %>
-      <table class="table">
-        <tr>
-          <th>Name</th>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <th>Introduction</th>
-          <td><%= @user.introduction %></td>
-        </tr>
-         </table>
-      
-      <% unless @user.guest_user? %>
-        <div class="w-75">
-          <%= link_to (edit_user_path(@user.id)), class:"btn btn-outline-secondary btn-block" do %>
-              <i class="fas fa-user-cog"></i>
-            <% end %>
-        </div>
-      <% end %>
+      <%= render 'info', user: @user %>
       
       <h1>New book</h1>
-      <div class="my-1">
-        <%= form_with model: @book, url: books_path, method: :post  do |f| %>
-        <div class="form-group">
-          <div class="form-group-prepend">
-            <label>Title</label>
-            <div><%= f.text_field :title, class:"form-controll"%></div>
-            <label>Opinion</label>
-            <div><%= f.text_area :body, class:"form-controll", rows:"3" %></div>
-            </div>
-            <p><%= f.submit "Create Book", class:"btn btn-success" %></p>
-          </div>
-          
-        <% end %> 
-      </div>
+      <%= render 'books/form', book: @book %>
     </div>
-
     
     <div class="col-md-8 offset-md-1">
       <h1>Books</h1>

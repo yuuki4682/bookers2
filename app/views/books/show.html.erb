@@ -5,39 +5,10 @@
   <div class="row">
     <div class="col-md-3">
       <h1>User info</h1>
-      <%= image_tag @book.user.get_profile_image(100, 100) %>
-      <table class="table">
-        <tr>
-          <th>Name</th>
-          <td><%= @book.user.name %></td>
-        </tr>
-        <tr>
-          <th>introduction</th>
-          <td><%= @book.user.introduction %></td>
-        </tr>
-         </table>
-      
-      <div class="w-75">
-        <%= link_to (edit_user_path(@book.user.id)), class:"btn btn-outline-secondary btn-block" do %>
-          <i class="fas fa-user-cog"></i>
-        <% end %>
-      </div>
+      <%= render 'users/info', user: @book.user %>
       
       <h1>New book</h1>
-      <div class="my-1">
-        <%= form_with model: @new_book do |f| %>
-        <div class="form-group">
-          <div class="form-group-prepend">
-            <label>Title</label>
-            <div><%= f.text_field :title, class:"form-controll"%></div>
-            <label>Opinion</label>
-            <div><%= f.text_area :body, class:"form-controll", rows:"3" %></div>
-            </div>
-            <p><%= f.submit "Create Book", class:"btn btn-success" %></p>
-          </div>
-          
-        <% end %> 
-      </div>
+      <%= render 'form', book: @new_book %>
     </div>
     
     <div class="col-md-8 offset-md-1">

@@ -1,0 +1,43 @@
+<table class="table">
+  <thread>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>opinion</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thread>
+  
+  <tbody>
+    <% books.each do |book| %>
+      <tr>
+        <td>
+          <%= link_to (user_path(book.user_id)) do %>
+            <%= image_tag book.user.get_profile_image(100, 100) %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to (book_path(book.id)) do %>
+          <%= book.title %>
+          <% end %>
+          </td> 
+        <td><%= book.body %></td>
+        <td>
+          <% if book.favorited_by?(current_user) %>
+            <%= link_to book_favorites_path(book), method: :delete do %>
+              <span class="text-danger">♥<%= book.favorites.count %></span>
+            <% end %>
+          <% else %>
+            <%= link_to book_favorites_path(book), method: :post do %>
+              <span class="text-primary">♡<%= book.favorites.count %></span>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          コメント数：<%= book.book_comments.count %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

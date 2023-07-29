@@ -1,0 +1,19 @@
+ <%= image_tag user.get_profile_image(100, 100) %>
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <td><%= user.name %></td>
+  </tr>
+  <tr>
+    <th>introduction</th>
+    <td><%= user.introduction %></td>
+  </tr>
+</table>
+
+<% unless user.guest_user? %>
+  <div class="w-75">
+    <%= link_to (edit_user_path(user.id)), class:"btn btn-outline-secondary btn-block" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  </div>
+<% end %>

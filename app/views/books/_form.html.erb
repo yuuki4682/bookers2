@@ -1,0 +1,15 @@
+  <div class="my-1">
+    <%= form_with model: book do |f| %>
+    <div class="form-group">
+      <div class="form-group-prepend">
+        <label>Title</label>
+        <div><%= f.text_field :title, class:"form-controll"%></div>
+        <label>Opinion</label>
+        <div><%= f.text_area :body, class:"form-controll", rows:"3" %></div>
+        </div>
+        <p><%= f.submit "Create Book", class:"btn btn-success" %></p>
+      </div>
+      
+    <% end %> 
+  </div>
+

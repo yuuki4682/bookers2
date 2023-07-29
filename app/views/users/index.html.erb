@@ -1,33 +1,17 @@
 <div class="container mt-3">
-  
-   <%= render 'books/error_messages', book: @book %>
-  
+  <%= render 'layouts/error_messages', obj: @book %>
   <div class="row">
     
-    <%= render 'books/new', book: @book %>
+    <div class="col-md-3">
+     <h2>Users info</h2>
+     <%= render 'info', user: current_user %>
+     <h2>New book</h2>
+     <%= render 'books/form', book: @book %>
+    </div>
     
     <div class="col-md-8 offset-md-1">
       <h1>Users</h1>
-      <table class="table">
-        <thread>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Introduction</th>
-          </tr>
-        </thread>
-        
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td><%= image_tag user.get_profile_image(100, 100) %></td>
-              <td><%= user.name %></td>
-              <td><%= link_to 'Show', user_path(user.id) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      </div>
-      
+      <%= render 'index', users: @users %>
+    </div>
   </div>
 </div>
