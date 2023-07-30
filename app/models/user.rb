@@ -51,4 +51,19 @@ class User < ApplicationRecord
     following_users.include?(user)
   end
   
+  def self.search(condition, word)
+    case condition
+    when "perfect_match" then
+      @users = User.where("name LIKE?", "#{word}")
+    when "front_match" then
+      @users = User.where("name LIKE?", "#{word}%")
+    when "rear_match" then
+      @users = User.where("name LIKE?", "%#{word}")
+    when "partial_match" then
+      @users = User.where("name LIKE?", "%#{word}%")
+    else
+      @users = User.all
+    end
+  end
+  
 end
