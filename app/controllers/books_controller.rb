@@ -7,7 +7,7 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    @books = Book.most_favorited_for_3month
 
     @new_book = Book.new
   end
