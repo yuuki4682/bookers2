@@ -7,6 +7,11 @@
     <div class="col-md-3">
       <h1>User info</h1>
       <%= render 'info', user: @user %>
+      <div class="d-flex mb-2">
+        <%= render 'relationships/button', user: @user %>
+        <%= render 'rooms/link', user: @user, room: @room, room_id: @room_id, entry: @entry, is_room: @is_room %>
+      </div>
+      <%= render 'config', user: @user %>
       
       <h1>New book</h1>
       <%= render 'books/form', book: @book %>

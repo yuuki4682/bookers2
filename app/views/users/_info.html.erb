@@ -25,13 +25,3 @@
     </td>
   </tr>
 </table>
-
-<% if current_user != user %>
-  <%= render 'relationships/button', user: user %>
-<% else %>  
-  <% unless user.guest_user? %>
-      <%= link_to (edit_user_path(user.id)), class:"btn btn-outline-secondary btn-block" do %>
-        <i class="fas fa-user-cog"></i>
-      <% end %>
-  <% end %>
-<% end %>

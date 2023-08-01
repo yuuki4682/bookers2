@@ -1,0 +1,12 @@
+<% unless current_user.id == user.id %>
+  <% if is_room == true %>
+    <%= link_to 'chatをはじめる', room_path(room_id) %>
+  <% else %>
+    <%= form_with model: room do |f| %>
+      <%= fields_for entry do |e| %>
+        <% e.hidden_field :user_id, value: user.id %>
+      <% end %>
+      <%= f.submit "chatを始める", class:"btn btn-link" %>
+    <% end %>
+  <% end %>
+<% end %>

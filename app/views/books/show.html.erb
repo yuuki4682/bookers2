@@ -6,7 +6,8 @@
     <div class="col-md-3">
       <h1>User info</h1>
       <%= render 'users/info', user: @book.user %>
-      
+      <%= render 'relationships/button', user: @book.user %>
+      <%= render 'users/config', user: @book.user %>
       <h1>New book</h1>
       <%= render 'form', book: @new_book %>
     </div>

@@ -1,0 +1,25 @@
+<% @entries.each do |entry| %>
+  <% if current_user.id != entry.user.id %>
+      <h2><%= entry.user.name %>さんとのチャット</h2>
+  <% end %>
+<% end %>
+  
+  <% @messages.each do |message| %>
+    <% if message.user == current_user %>
+      <div class="text-right">
+        <%= message.user.name %>
+        <%= message.body %>
+      </div>
+    <% else %>
+      <%= message.user.name %>
+      <%= message.body %>
+    <% end %>
+  <% end %>
+  
+<div class="form-group mx-30">  
+  <%= form_with method: @message, url: messages_path do |f| %>
+    <%= f.text_field :body, placeholder: "message" %>
+    <%= f.hidden_field :room_id, :value => @room.id %>
+    <%= f.submit 'send' %>
+  <% end %>
+</div>
