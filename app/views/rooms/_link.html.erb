@@ -1,4 +1,4 @@
-<% unless current_user.id == user.id %>
+ <% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
   <% if is_room == true %>
     <%= link_to 'chatをはじめる', room_path(room_id) %>
   <% else %>
