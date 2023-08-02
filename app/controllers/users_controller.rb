@@ -56,6 +56,16 @@ class UsersController < ApplicationController
     end
   end
   
+  def search
+    @user = User.find(params[:user_id])
+    created_time = params[:created_at]
+    if created_time == ""
+      @search_book = "日付が入力されていません"
+    else
+      @search_book = @user.books.where(created_at: created_time.to_date.all_day).count
+    end
+  end
+  
  private
     def user_params
       params.require(:user).permit(:name, :profile_image, :introduction)

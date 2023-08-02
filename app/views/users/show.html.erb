@@ -54,6 +54,17 @@
           <% end %>
         </tbody>
       </table>
+      <div class="py-3">
+        <%= form_with url: user_search_path(@user.id), method: :get, local: false do |f| %>
+          <%= f.date_field :created_at %>
+          <%= f.submit 'search' %>
+        <% end %>
+        <div id="search_result">
+          <% if @search_book.present? %>
+            <%= render 'search', search_book: @search_book %>
+          <% end %>
+        </div>
+      </div>
       <h2>投稿数の前日比・前週比</h2>
       <table class="table table-bordered">
         <tr>
