@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7 mx-auto">
+      <h1>Event mail</h1>
+      <div class="form-group">
+        <%= form_with url: group_send_mail_path(@group), method: :get do |f| %>
+          <%= f.label :title %>
+          <%= f.text_field :mail_title, class:"form-control mb-2" %>
+          <%= f.label :content %>
+          <%= f.text_area :mail_content, class:"form-control mb-2" %>
+          <%= f.submit '送信' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
