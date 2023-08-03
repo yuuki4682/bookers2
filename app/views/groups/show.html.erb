@@ -11,12 +11,26 @@
       <h2>Group detail</h2>
       <table class="table">
         <tr>
-          <th><%= image_tag @group.get_group_image(50,50) %></th>
-          <th><%= @group.name %></th>
-          <th><%= @group.introduction %></th>
+          <th></th>
+          <th>グループ名</th>
+          <th>紹介文</th>
+          <th>members</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td><%= image_tag @group.get_group_image(50,50) %></td>
+          <td><%= @group.name %></td>
+          <td><%= @group.introduction %></td>
+          <td>
+            <% @group.users.each do |member| %>
+            <li style="list-style: none;"><%= member.name %></li>
+            <% end %>
+          </td>
           <td>
             <% if @group.owner_id == current_user.id %>
               <%= link_to 'edit', edit_group_path(@group), class:"btn btn-success" %>
+            <% else %>
+              <%= render 'join_btn', group: @group %>
             <% end %>
           </td>
         </tr>
