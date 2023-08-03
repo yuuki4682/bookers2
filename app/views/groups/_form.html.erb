@@ -1,0 +1,11 @@
+<div class="form-group">
+  <%= form_with model: group do |f| %>
+    <%= f.label :グループ名 %>
+    <%= f.text_field :name, class:"form-control mb-2" %>
+    <%= f.label :紹介文 %>
+    <%= f.text_area :introduction, class:"form-control mb-2" %>
+    <%= f.label :グループ画像 %>
+    <%= f.file_field :group_image, accept: "image/*", class:"form-control-file" %>
+    <%= f.submit class:"mt-2" %>
+  <% end %>
+</div>

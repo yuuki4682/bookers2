@@ -54,6 +54,7 @@
           <% end %>
         </tbody>
       </table>
+<% if false %>
       <div class="py-3">
         <%= form_with url: user_search_path(@user.id), method: :get, local: false do |f| %>
           <%= f.date_field :created_at %>
@@ -171,3 +172,4 @@
       
   </div>
 </div>
+<% end %>
