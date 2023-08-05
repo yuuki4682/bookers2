@@ -6,6 +6,7 @@
       <th>opinion</th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thread>
   
@@ -28,6 +29,9 @@
         </td>
         <td>
           コメント数：<%= book.book_comments.count %>
+        </td>
+        <td>
+          <%= render 'show_raty', book: book %>
         </td>
       </tr>
     <% end %>

@@ -10,7 +10,14 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.most_favorited_for_3month
+    if params[:latest]
+      @books = Book.latest
+    elsif params[:score_count]
+      @books = Book.score_count
+    else
+      @books = Book.all
+    end
+    #@books = Book.most_favorited_for_3month
 
     @new_book = Book.new
   end

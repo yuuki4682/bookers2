@@ -1,11 +1,17 @@
- <div id="show_raty"></div>
+ <div id="rate_<%= book.id %>"></div>
 <script>
-  let elemToShow = document.querySelector('#show_raty');
-  let optToShow = {  
-    starOff: '<%= asset_path('star-off.png') %>',
-    starOn: '<%= asset_path('star-on.png') %>',
+  $(document).on('turbolinks:load', function() {
+    let elem = document.querySelector('#rate_<%= book.id %>');
+  if (elem == null) return;
+  
+  elem.innerHTML = "";
+  let opt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
     score: "<%= book.score %>",
-    readOnly: true
-   };
-  raty(elemToShow,optToShow);
+    readOnly: true,
+  };
+  raty(elem, opt);
+});
 </script>
