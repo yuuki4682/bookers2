@@ -7,9 +7,20 @@
         <label>Opinion</label>
         <div><%= f.text_area :body, class:"form-controll", rows:"3" %></div>
         </div>
+        <div class="star-form-group", id="post_raty">
+          <%= f.label :score, 'Score' %>
+        </div>
+          <script>
+            let elem = document.querySelector('#post_raty');
+            let opt = {  
+              starOff: '<%= asset_path('star-off.png') %>',
+              starOn: '<%= asset_path('star-on.png') %>',
+              scoreName: 'book[score]'
+             };
+            raty(elem,opt);
+          </script>
         <p><%= f.submit "Create Book", class:"btn btn-success" %></p>
       </div>
-      
     <% end %> 
   </div>
 

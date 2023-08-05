@@ -1,0 +1,11 @@
+ <div id="show_raty"></div>
+<script>
+  let elemToShow = document.querySelector('#show_raty');
+  let optToShow = {  
+    starOff: '<%= asset_path('star-off.png') %>',
+    starOn: '<%= asset_path('star-on.png') %>',
+    score: "<%= book.score %>",
+    readOnly: true
+   };
+  raty(elemToShow,optToShow);
+</script>

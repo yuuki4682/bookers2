@@ -15,19 +15,11 @@
     <div class="col-md-8 offset-md-1">
       <h1>Book detail</h1>
       <table class="table">
-        <thread>
-          <tr>
-            <th></th>
-            <th>Title</th>
-            <th>opinion</th>
-          </tr>
-        </thread>
-        
         <tbody>
           <tr>
             <td>
               <%= link_to (user_path(@book.user_id)) do %>
-                  <%= image_tag @book.user.get_profile_image(100, 100) %></br>
+                  <%= image_tag @book.user.get_profile_image(50, 50) %></br>
                   <%= @book.user.name %>
               <% end %>
             </td>
@@ -36,23 +28,26 @@
                 <%= @book.title %></td>
               <% end %>
             <td><%= @book.body %></td>
+            <td id="favorite_btn_<%= @book.id %>">
+              <%= render 'favorites/favorite-btn', book: @book %>
+            </td>
+            <td>
+              コメント数:<%= @book.book_comments.count %>
+            </td>
+            <td>
+              <!--閲覧数: <%= @book.view_counts.count %>-->
+            </td>
+            <td>
+             <%= render 'show_raty', book: @book %>
+            </td>
             <% if @book.user_id == current_user.id %>
               <td>
-                <%= link_to 'Edit', edit_book_path(@book.id), class:"btn btn-success" %>
+                <%= link_to 'Edit', edit_book_path(@book.id), class:"btn btn-success btn-sm" %>
               </td>
               <td>
-                <%= link_to 'Destroy', book_path(@book), method: :delete, class:"btn btn-danger"%>
+                <%= link_to 'Destroy', book_path(@book), method: :delete, class:"btn btn-danger btn-sm"%>
               </td>
             <% end %>
-              <td id="favorite_btn_<%= @book.id %>">
-                <%= render 'favorites/favorite-btn', book: @book %>
-              </td>
-              <td>
-                コメント数:<%= @book.book_comments.count %>
-              </td>
-              <td>
-                閲覧数: <%= @book.view_counts.count %>
-              </td>
           </tr>
       </tbody>
     </table>
