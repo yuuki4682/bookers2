@@ -6,8 +6,10 @@ class SearchesController < ApplicationController
     
     if params[:range] == "user"
       @users = User.search(params[:condition], params[:word])
-    else
+    elsif params[:rang] == "book"
       @books = Book.search(params[:condition], params[:word])
+    else
+      @tag = Book.where(tag: params[:word])
     end
   end
   

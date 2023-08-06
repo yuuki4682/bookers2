@@ -1,34 +1,36 @@
   <div class="my-1">
     <%= form_with model: book do |f| %>
-    <div class="form-group">
-      <div class="form-group-prepend">
-        <label>Title</label>
-        <div><%= f.text_field :title, class:"form-controll"%></div>
-        <label>Opinion</label>
-        <div><%= f.text_area :body, class:"form-controll", rows:"3" %></div>
-        </div>
-        <div class="form-group" id="star">
-          <%= f.label :score, 'Score' %>
-          <%= f.hidden_field :rate, id: :review_star, class: 'form-control' %>
-          <div id="post_raty"></div>
-        </div>
-          <script>
-            $(document).on('turbolinks:load', function() {
-              let elem = document.querySelector('#post_raty');
-              if (elem == null) return;
-        
-              elem.innerHTML = ""
-              let opt = {  
-                starOn: "<%= asset_path('star-on.png') %>",
-                starOff: "<%= asset_path('star-off.png') %>",
-                starHalf: "<%= asset_path('star-half.png') %>",
-                scoreName: 'book[score]',
-              };
-              raty(elem, opt);
-            });
-          </script>
-        <p><%= f.submit "Create Book", class:"btn btn-success" %></p>
+    <div>
+      <div class="form-group">
+        <%= f.label :title, "Title" %>
+        <%= f.text_field :title, class:"form-control"%>
+        <%= f.label :body, "Opinion" %>
+        <%= f.text_area :body, class:"form-control", rows:"3" %>
+        <%= f.label :tag, "Tag" %>
+        <%= f.text_field :tag, class:"form-control" %>
       </div>
-    <% end %> 
-  </div>
+      <div class="form-group" id="star">
+        <%= f.label :score, 'Score' %>
+        <%= f.hidden_field :score, id: :review_star, class: 'form-control' %>
+        <div id="post_raty"></div>
+      </div>
+      <script>
+        $(document).on('turbolinks:load', function() {
+          let elem = document.querySelector('#post_raty');
+          if (elem == null) return;
+    
+          elem.innerHTML = ""
+          let opt = {  
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'book[score]',
+          };
+          raty(elem, opt);
+        });
+      </script>
+      <p><%= f.submit "Create Book", class:"btn btn-success" %></p>
+    </div>
+  <% end %> 
+</div>
 

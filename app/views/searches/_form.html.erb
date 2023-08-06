@@ -8,4 +8,11 @@
       <%= f.submit 'search' %>
     <% end %>
   </div>
+  <div class="col-md-5 col-sm-10 form-group mt-2 mx-auto">
+    <%= form_with url: search_path, method: :get do |f| %>
+      <%= f.text_field :word %>
+      <%= f.hidden_field :range, :value => "tag" %>
+      <%= f.submit 'search tag' %>
+    <% end %>
+  </div>
 </div>
